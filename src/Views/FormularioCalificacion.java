@@ -7,7 +7,7 @@ package Views;
 
 import java.awt.Color;
 import javax.swing.JOptionPane;
-
+import main.Calificaciones;
 /**
  *
  * @author DAVID
@@ -178,25 +178,8 @@ public class FormularioCalificacion extends javax.swing.JFrame {
         String Nota1 = jTextField1.getText();
         String Nota2 = jTextField2.getText();
         String Nota3 = jTextField3.getText();
-        int nota1 = Integer.valueOf(Nota1);
-        int nota2 = Integer.valueOf(Nota2);
-        int nota3 = Integer.valueOf(Nota3);
-        if(nota1 <= 20 && nota1 >=0 && nota2 <= 20 && nota2 >=0 && nota3 <= 20 && nota3 >=0){
-            int promedio = (nota1 + nota2 + nota3)/3;
-            jTextField4.setText(String.valueOf(promedio));
-            if(promedio>14){
-                jLabel7.setText("APROBADO");
-                jLabel7.setForeground(Color.blue);
-            }else if(promedio>7 && promedio<13){
-                jLabel7.setText("SUPLETORIO");
-                jLabel7.setForeground(Color.yellow);
-            }else{
-                jLabel7.setText("REPROBADO");
-                jLabel7.setForeground(Color.red);
-            }
-        } else {
-            JOptionPane.showMessageDialog(this,"Ingrese nota sobre 20");
-        }
+        Calificaciones calificaciones = new  Calificaciones(Nota1, Nota2, Nota3);
+        jLabel7.setText(calificaciones.observacion());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
