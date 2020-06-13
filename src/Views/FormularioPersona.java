@@ -7,6 +7,7 @@ package Views;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.table.DefaultTableModel;
 import main.Persona;
 
 /**
@@ -14,12 +15,15 @@ import main.Persona;
  * @author Steven
  */
 public class FormularioPersona extends javax.swing.JFrame {
+    ArrayList<Persona> objPersona =new ArrayList<>();
     List<Persona> listPersona;
     /**
      * Creates new form FormularioPersona
      */
     public FormularioPersona() {
         initComponents();
+        //objPersona=new ArrayList<>();
+        
         listPersona=new ArrayList<Persona>();
     }
    
@@ -32,6 +36,7 @@ public class FormularioPersona extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtnombre = new javax.swing.JTextField();
@@ -44,13 +49,16 @@ public class FormularioPersona extends javax.swing.JFrame {
         rdfemenino = new javax.swing.JRadioButton();
         jLabel6 = new javax.swing.JLabel();
         cboinstruccion = new javax.swing.JComboBox<>();
-        btnagregar = new javax.swing.JButton();
-        btneliminar = new javax.swing.JButton();
-        btnactualizar = new javax.swing.JButton();
-        btnbuscar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btn_agregar = new javax.swing.JButton();
+        btn_eliminar = new javax.swing.JButton();
+        btn_actualizar = new javax.swing.JButton();
+        btn_Buscar = new javax.swing.JButton();
+        btn_Imprimir = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        Tabla = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Registro de personas");
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel1.setText("REGISTRO DE PERSONAS");
@@ -63,98 +71,122 @@ public class FormularioPersona extends javax.swing.JFrame {
 
         jLabel5.setText("Género:");
 
-        rdmasculino.setSelected(true);
+        buttonGroup1.add(rdmasculino);
         rdmasculino.setText("Masculino");
-        rdmasculino.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rdmasculinoActionPerformed(evt);
-            }
-        });
 
+        buttonGroup1.add(rdfemenino);
         rdfemenino.setText("Femenino");
 
         jLabel6.setText("Nivel de Instrucción:");
 
         cboinstruccion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ninguna", "Primaria", "Secundaria", "Superior", "Postgrado" }));
 
-        btnagregar.setFont(new java.awt.Font("Calisto MT", 1, 12)); // NOI18N
-        btnagregar.setText("AGREGAR");
-        btnagregar.addActionListener(new java.awt.event.ActionListener() {
+        btn_agregar.setFont(new java.awt.Font("Calisto MT", 1, 12)); // NOI18N
+        btn_agregar.setText("AGREGAR");
+        btn_agregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnagregarActionPerformed(evt);
+                btn_agregarActionPerformed(evt);
             }
         });
 
-        btneliminar.setFont(new java.awt.Font("Calisto MT", 1, 12)); // NOI18N
-        btneliminar.setText("ELIMINAR");
-        btneliminar.addActionListener(new java.awt.event.ActionListener() {
+        btn_eliminar.setFont(new java.awt.Font("Calisto MT", 1, 12)); // NOI18N
+        btn_eliminar.setText("ELIMINAR");
+        btn_eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btneliminarActionPerformed(evt);
+                btn_eliminarActionPerformed(evt);
             }
         });
 
-        btnactualizar.setFont(new java.awt.Font("Calisto MT", 1, 12)); // NOI18N
-        btnactualizar.setText("ACTUALIZAR");
-
-        btnbuscar.setFont(new java.awt.Font("Calisto MT", 1, 12)); // NOI18N
-        btnbuscar.setText("BUSCAR");
-
-        jButton1.setText("IMPRIMIR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_actualizar.setFont(new java.awt.Font("Calisto MT", 1, 12)); // NOI18N
+        btn_actualizar.setText("ACTUALIZAR");
+        btn_actualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_actualizarActionPerformed(evt);
             }
         });
+
+        btn_Buscar.setFont(new java.awt.Font("Calisto MT", 1, 12)); // NOI18N
+        btn_Buscar.setText("BUSCAR");
+
+        btn_Imprimir.setFont(new java.awt.Font("Calisto MT", 1, 11)); // NOI18N
+        btn_Imprimir.setText("IMPRIMIR");
+        btn_Imprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ImprimirActionPerformed(evt);
+            }
+        });
+
+        Tabla.setFont(new java.awt.Font("Felix Titling", 0, 11)); // NOI18N
+        Tabla.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nombre", "Apellido", "Cédula", "Genero", "Nivel de Instrucción"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(Tabla);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btn_agregar)
+                .addGap(18, 18, 18)
+                .addComponent(btn_Imprimir)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_actualizar)
+                .addGap(18, 18, 18)
+                .addComponent(btn_Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btn_eliminar)
+                .addGap(13, 13, 13))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(99, 99, 99)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(99, 99, 99)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(149, 149, 149))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel5)
-                                    .addGap(26, 26, 26)
-                                    .addComponent(rdmasculino)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(rdfemenino))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel6)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(cboinstruccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel4)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(1, 1, 1)
-                                                .addComponent(jLabel2)))
-                                        .addComponent(jLabel3))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(txtapellido)
-                                        .addComponent(txtnombre)
-                                        .addComponent(txtcedula, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(48, 48, 48)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnagregar)
-                        .addGap(36, 36, 36)
-                        .addComponent(btneliminar)
-                        .addGap(35, 35, 35)
-                        .addComponent(btnactualizar)
-                        .addGap(33, 33, 33)
-                        .addComponent(btnbuscar)
-                        .addGap(37, 37, 37)
-                        .addComponent(jButton1)))
-                .addContainerGap(84, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(149, 149, 149))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel5)
+                            .addGap(26, 26, 26)
+                            .addComponent(rdmasculino)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(rdfemenino))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel6)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(cboinstruccion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(1, 1, 1)
+                                        .addComponent(jLabel2)))
+                                .addComponent(jLabel3))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtapellido)
+                                .addComponent(txtnombre)
+                                .addComponent(txtcedula, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(48, 48, 48))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 622, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,51 +217,89 @@ public class FormularioPersona extends javax.swing.JFrame {
                     .addComponent(cboinstruccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnagregar)
-                    .addComponent(btneliminar)
-                    .addComponent(btnactualizar)
-                    .addComponent(btnbuscar)
-                    .addComponent(jButton1))
-                .addContainerGap(49, Short.MAX_VALUE))
+                    .addComponent(btn_agregar)
+                    .addComponent(btn_actualizar)
+                    .addComponent(btn_Buscar)
+                    .addComponent(btn_Imprimir)
+                    .addComponent(btn_eliminar))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void rdmasculinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdmasculinoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rdmasculinoActionPerformed
-
-    private void btnagregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnagregarActionPerformed
+    private void btn_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarActionPerformed
         String nombres=txtnombre.getText();
         String apellidos=txtapellido.getText();
         String cedular=txtcedula.getText();
         int instruccion=cboinstruccion.getSelectedIndex();
         String genero;
+        
         if(rdmasculino.isSelected())
             genero="M";
         else
             genero="F";
         Persona persona = new Persona(nombres, apellidos, cedular, genero, instruccion);
         listPersona.add(persona);
+        //limpiarFormulario();
+//========================================================================================
+        DefaultTableModel modelo=(DefaultTableModel) Tabla.getModel();
+
+        String []agregar=new String[5];
+        agregar[0]=txtnombre.getText();
+        agregar[1]=txtapellido.getText();
+        agregar[2]=txtcedula.getText();
+        
+        if(rdmasculino.isSelected())
+            agregar[3]="M";
+        else
+            agregar[3]="F";
+        
+        agregar[4]= (String)cboinstruccion.getSelectedItem();
+        //Persona persona = new Persona(nombres, apellidos, cedular, genero, instruccion);
+        modelo.addRow(agregar);
         limpiarFormulario();
-    }//GEN-LAST:event_btnagregarActionPerformed
+        
+    }//GEN-LAST:event_btn_agregarActionPerformed
+    
+    
     private void limpiarFormulario(){
         txtnombre.setText("");
         txtapellido.setText("");
         txtcedula.setText("");
+        
+        String genero;
+        
+        if(rdmasculino.isSelected())
+            genero=" ";
+        else
+            genero=" ";
+        
+        rdmasculino.isSelected();
         cboinstruccion.setSelectedIndex(0);
     }
-    private void btneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarActionPerformed
+    private void btn_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btneliminarActionPerformed
+//        txtnombre.setText("");
+//        txtapellido.setText("");
+//        txtcedula.setText("");
+//        rdmasculino.isSelected();
+        
+    }//GEN-LAST:event_btn_eliminarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btn_ImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ImprimirActionPerformed
         for (int i = 0; i < listPersona.size(); i++) {
             System.out.println(listPersona.get(i).toString());
             
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btn_ImprimirActionPerformed
+
+    private void btn_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_actualizarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_actualizarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -267,18 +337,21 @@ public class FormularioPersona extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnactualizar;
-    private javax.swing.JButton btnagregar;
-    private javax.swing.JButton btnbuscar;
-    private javax.swing.JButton btneliminar;
+    private javax.swing.JTable Tabla;
+    private javax.swing.JButton btn_Buscar;
+    private javax.swing.JButton btn_Imprimir;
+    private javax.swing.JButton btn_actualizar;
+    private javax.swing.JButton btn_agregar;
+    private javax.swing.JButton btn_eliminar;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cboinstruccion;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JRadioButton rdfemenino;
     private javax.swing.JRadioButton rdmasculino;
     private javax.swing.JTextField txtapellido;
