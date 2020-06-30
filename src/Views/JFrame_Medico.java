@@ -1,5 +1,8 @@
-package Medicos;
+package Views;
 
+import main.ListaMedicos;
+import main.Medico;
+import Views.MostrarDatosMedicos;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 
@@ -242,7 +245,6 @@ public class JFrame_Medico extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -290,8 +292,6 @@ public class JFrame_Medico extends javax.swing.JFrame {
                     .addComponent(txt_sueldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        jPanel1.getAccessibleContext().setAccessibleName("Lista de seguros medicos asociados:");
 
         pack();
         setLocationRelativeTo(null);

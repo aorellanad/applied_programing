@@ -1,4 +1,4 @@
-package Medicos;
+package main;
 public class Medico {
     private String Nombre;
     private String Apellido;

@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Medicos;
+package Views;
 
+import main.ListaMedicos;
+import main.Medico;
 import java.awt.Color;
 import javax.swing.table.DefaultTableModel;
 
