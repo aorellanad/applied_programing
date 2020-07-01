@@ -425,7 +425,7 @@ private boolean validaVacios() {
         }else if (btgapto.equals(0)) {
             vacio = true;
         }
-        return false;
+        return vacio;
     }
     private void btbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btbuscarActionPerformed
         // TODO add your handling code here:

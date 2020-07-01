@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @author USUARIO
  */
 public class listaJuegos {
-    ArrayList<Datos> lista = new ArrayList<Datos>();
+    private ArrayList<Datos> lista = new ArrayList<Datos>();
 
     public ArrayList<Datos> getLista() {
         return lista;
