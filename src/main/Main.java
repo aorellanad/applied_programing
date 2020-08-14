@@ -11,6 +11,7 @@ import models.Person;
 public class Main {
 
     public static void main(String[] args) {
+        /*
         People people = new People();
         DecimalFormat decimalFormatter = new DecimalFormat("#.##");
         Scanner sc = new Scanner(System.in);
@@ -47,7 +48,7 @@ public class Main {
             Scanner entrada = new Scanner(System.in);
             opcion = entrada.nextInt();
         } while (opcion == 1);
-        
+        */
         // crea marco para LineasRectsOvalosJPanel
         JFrame marco = new JFrame("Taller 10 (segundo trimestre)");
         marco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
