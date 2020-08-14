@@ -5,8 +5,8 @@
  */
 package Views;
 
-import main.Profesor;
-import main.listaprofesor;
+import models.Profesor;
+import models.listaprofesor;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -84,43 +84,6 @@ public class listadoDocente extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(listadoDocente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(listadoDocente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(listadoDocente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(listadoDocente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new listadoDocente().setVisible(true);
-            }
-        });
-    }
     public void cargardatos(listaprofesor listado) {
         DefaultTableModel modelo = (DefaultTableModel) tbdatos.getModel();
 
@@ -129,31 +92,42 @@ public class listadoDocente extends javax.swing.JFrame {
             String profesionales = "";
             String asociado = "";
             switch (p.getTitulo()) {
-                case 0: titulo="Ninguna";break;
-                case 1: titulo="Licenciado";break;
-                case 2: titulo="Ingeniero";break;
+                case 0:
+                    titulo = "Ninguna";
+                    break;
+                case 1:
+                    titulo = "Licenciado";
+                    break;
+                case 2:
+                    titulo = "Ingeniero";
+                    break;
 
             }
-            if (p.getProfesionales()[0]==1)
-                profesionales=" Estudiante";
-            if (p.getProfesionales()[1]==1)
-                profesionales=profesionales+"; Catedrático de Universidad";
-            if (p.getProfesionales()[2]==1)
-                profesionales=profesionales+"; Docente";
-            if (p.getProfesionales()[3]==1)
-                profesionales=profesionales+"; Docente-Investigación";
-            if (p.getProfesionales()[4]==1)
-                profesionales=profesionales+"; Médico";
-            
-            if (p.getAsociado().equals("SI")) {
-                asociado="SI";
-            }else{
-                asociado="NO";
+            if (p.getProfesionales()[0] == 1) {
+                profesionales = " Estudiante";
             }
-             Object[] fila={p.getNombre(),
-                        p.getApellido(),
-                        p.getCedula(), titulo,
-                        p.getSueldo(),asociado,profesionales};
+            if (p.getProfesionales()[1] == 1) {
+                profesionales = profesionales + "; Catedrático de Universidad";
+            }
+            if (p.getProfesionales()[2] == 1) {
+                profesionales = profesionales + "; Docente";
+            }
+            if (p.getProfesionales()[3] == 1) {
+                profesionales = profesionales + "; Docente-Investigación";
+            }
+            if (p.getProfesionales()[4] == 1) {
+                profesionales = profesionales + "; Médico";
+            }
+
+            if (p.getAsociado().equals("SI")) {
+                asociado = "SI";
+            } else {
+                asociado = "NO";
+            }
+            Object[] fila = {p.getNombre(),
+                p.getApellido(),
+                p.getCedula(), titulo,
+                p.getSueldo(), asociado, profesionales};
             modelo.addRow(fila);
         }
     }
@@ -164,6 +138,4 @@ public class listadoDocente extends javax.swing.JFrame {
     private javax.swing.JTable tbdatos;
     // End of variables declaration//GEN-END:variables
 
-    
-    }
-
+}

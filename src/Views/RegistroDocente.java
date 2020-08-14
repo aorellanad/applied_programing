@@ -5,8 +5,8 @@
  */
 package Views;
 
-import main.Profesor;
-import main.listaprofesor;
+import models.Profesor;
+import models.listaprofesor;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 
@@ -14,11 +14,10 @@ import javax.swing.JOptionPane;
  *
  * @author pc
  */
-
 public class RegistroDocente extends javax.swing.JFrame {
 
     listaprofesor lista = new listaprofesor();
-    
+
     public RegistroDocente() {
         initComponents();
         this.getContentPane().setBackground(Color.WHITE);
@@ -294,30 +293,30 @@ public class RegistroDocente extends javax.swing.JFrame {
     }//GEN-LAST:event_noActionPerformed
 
     private void tbistarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbistarActionPerformed
-        listadoDocente listar= new listadoDocente();
+        listadoDocente listar = new listadoDocente();
         listar.cargardatos(this.lista);
-        listar.setVisible(true);    
+        listar.setVisible(true);
     }//GEN-LAST:event_tbistarActionPerformed
 
     private void tbCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbCerrarActionPerformed
-       this.setVisible(false);
+        this.setVisible(false);
     }//GEN-LAST:event_tbCerrarActionPerformed
 
     private void tbAgergarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbAgergarActionPerformed
         String nombre = txtnombre.getText();
         String apellido = txtapellido.getText();
         String cedula = txtcedula.getText();
-        String sueldo=txtsueldo.getText();
+        String sueldo = txtsueldo.getText();
         String asociado;
         int titulo = cbtitulo.getSelectedIndex();
         int[] profesionales = new int[5];
-        
+
         if (si.isSelected()) {
             asociado = "SI";
         } else {
             asociado = "NO";
         }
-        
+
         if (chkest.isSelected()) {
             profesionales[0] = 1;
         } else {
@@ -342,22 +341,22 @@ public class RegistroDocente extends javax.swing.JFrame {
             profesionales[4] = 1;
         } else {
             profesionales[4] = 0;
-        
+
         }
         Profesor p = new Profesor(nombre, apellido, cedula, titulo, sueldo, asociado, profesionales);
         this.lista.Agregar(p);
         limpiar();
-    
+
     }//GEN-LAST:event_tbAgergarActionPerformed
-        
+
     private void tbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbEliminarActionPerformed
-       String cedula = JOptionPane.showInputDialog("Ingrese la cedula a eliminar: ");
+        String cedula = JOptionPane.showInputDialog("Ingrese la cedula a eliminar: ");
         int confirm = JOptionPane.showConfirmDialog(this, "Seguro que desea eliminar el registro: ");
         if (confirm == 0) {
             this.lista.Eliminarxcedula(cedula);
         }
     }//GEN-LAST:event_tbEliminarActionPerformed
-    
+
     private void tbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbBuscarActionPerformed
         Profesor p;
         String cedula = JOptionPane.showInputDialog("Ingrese la cedula: ");
@@ -400,9 +399,9 @@ public class RegistroDocente extends javax.swing.JFrame {
             } else {
                 chkmed.setSelected(false);
             }
-            
+
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Registro no encontrado "+e);
+            JOptionPane.showMessageDialog(this, "Registro no encontrado " + e);
             limpiar();
         }
     }//GEN-LAST:event_tbBuscarActionPerformed
@@ -410,7 +409,7 @@ public class RegistroDocente extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         limpiar();
     }//GEN-LAST:event_jButton2ActionPerformed
-    
+
     private void limpiar() {
         txtnombre.setText(" ");
         txtapellido.setText(" ");
@@ -423,43 +422,6 @@ public class RegistroDocente extends javax.swing.JFrame {
         chkdoc.setSelected(false);
         chkdocI.setSelected(false);
         chkmed.setSelected(false);
-    }
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RegistroDocente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RegistroDocente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RegistroDocente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RegistroDocente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new RegistroDocente().setVisible(true);
-            }
-        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

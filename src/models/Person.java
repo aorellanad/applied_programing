@@ -16,6 +16,7 @@ public class Person {
     String phone;
     String email;
     String address;
+    double salary;
 
     public Person(String name, String lastName, String phone, String email, String address, double salary) {
         this.name = name;
@@ -73,5 +74,4 @@ public class Person {
     public void setSalary(double salary) {
         this.salary = salary;
     }
-    double salary;
 }

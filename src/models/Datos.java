@@ -1,5 +1,5 @@
 
-package main;
+package models;
 
 
 public class Datos {

@@ -4,8 +4,9 @@
  * and open the template in the editor.
  */
 package Views;
-import main.Datos;
-import main.listaJuegos;
+
+import models.Datos;
+import models.listaJuegos;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -83,41 +84,6 @@ public class listarDatosJuegos extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btcerrarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(listarDatosJuegos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(listarDatosJuegos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(listarDatosJuegos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(listarDatosJuegos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new listarDatosJuegos().setVisible(true);
-            }
-        });
-    }
     public void cargardatos(listaJuegos listado) {
         DefaultTableModel modelo = (DefaultTableModel) tbdatos.getModel();
 
@@ -125,38 +91,56 @@ public class listarDatosJuegos extends javax.swing.JFrame {
             String consola = "";
             String apto = "";
             String genero = "";
-            
+
             switch (p.getConsola()) {
-                case 0: consola="";break;
-                case 1: consola="Ps3";break;
-                case 2: consola="Ps4";break;
-                case 3: consola="Xbox One";break; 
-                case 4: consola="Pc";break;
-                case 5: consola="Otro";break; 
+                case 0:
+                    consola = "";
+                    break;
+                case 1:
+                    consola = "Ps3";
+                    break;
+                case 2:
+                    consola = "Ps4";
+                    break;
+                case 3:
+                    consola = "Xbox One";
+                    break;
+                case 4:
+                    consola = "Pc";
+                    break;
+                case 5:
+                    consola = "Otro";
+                    break;
             }
-            
-            if (p.getGenero()[0]==1)
-                genero=" Accion";
-            if (p.getGenero()[1]==1)
-                genero=genero+"; Aventura";
-            if (p.getGenero()[2]==1)
-                genero=genero+"; Shooters";
-            if (p.getGenero()[3]==1)
-                genero=genero+"; Carreras";
-            if (p.getGenero()[4]==1)
-                genero=genero+"; Educativo";
-            if (p.getGenero()[5]==1)
-                genero=genero+"; Estrategia";
-            
+
+            if (p.getGenero()[0] == 1) {
+                genero = " Accion";
+            }
+            if (p.getGenero()[1] == 1) {
+                genero = genero + "; Aventura";
+            }
+            if (p.getGenero()[2] == 1) {
+                genero = genero + "; Shooters";
+            }
+            if (p.getGenero()[3] == 1) {
+                genero = genero + "; Carreras";
+            }
+            if (p.getGenero()[4] == 1) {
+                genero = genero + "; Educativo";
+            }
+            if (p.getGenero()[5] == 1) {
+                genero = genero + "; Estrategia";
+            }
+
             if (p.getApto().equals("SI")) {
-                apto="SI";
-            }else{
-                apto="NO";
+                apto = "SI";
+            } else {
+                apto = "NO";
             }
-             Object[] fila={p.getNombre(),
-                        p.getFechaLan(),
-                        p.getPrecio(),
-                        consola,apto,genero};
+            Object[] fila = {p.getNombre(),
+                p.getFechaLan(),
+                p.getPrecio(),
+                consola, apto, genero};
             modelo.addRow(fila);
         }
     }

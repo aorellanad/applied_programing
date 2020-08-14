@@ -5,8 +5,8 @@
  */
 package Views;
 
-import main.ListaMedicos;
-import main.Medico;
+import models.ListaMedicos;
+import models.Medico;
 import java.awt.Color;
 import javax.swing.table.DefaultTableModel;
 
@@ -94,80 +94,69 @@ public class MostrarDatosMedicos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         this.setVisible(false); 
+        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MostrarDatosMedicos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MostrarDatosMedicos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MostrarDatosMedicos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MostrarDatosMedicos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    public void cargardatos(ListaMedicos listado) {
+        DefaultTableModel modelo = (DefaultTableModel) Tabla.getModel();
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MostrarDatosMedicos().setVisible(true);
-            }
-        });
-    }
-     public void cargardatos(ListaMedicos listado)
-    {
-        DefaultTableModel modelo= (DefaultTableModel) Tabla.getModel();
-        
-        for(Medico Mdc : listado.getLista()){
-            {String Especialidad="";
-               String PrestadoralIESS="";
-                String ListaSeguroMedico="";
-                switch (Mdc.getEspecialidad())
-                {
-         
-                    case 0: Especialidad="Angiología.";break;
-                    case 1: Especialidad="Dermatología.";break;
-                    case 2: Especialidad="Ginecología.";break;
-                    case 3: Especialidad="Obstetricia.";break;
-                    case 4: Especialidad="Tocología.";break;
-                    case 5: Especialidad="Oftalmología.";break;
-                    case 6: Especialidad="Otorrinolaringología.";break;
-                    case 7: Especialidad="Urología.";break;
-                    case 8: Especialidad="Traumatología.";break;
+        for (Medico Mdc : listado.getLista()) {
+            {
+                String Especialidad = "";
+                String PrestadoralIESS = "";
+                String ListaSeguroMedico = "";
+                switch (Mdc.getEspecialidad()) {
+
+                    case 0:
+                        Especialidad = "Angiología.";
+                        break;
+                    case 1:
+                        Especialidad = "Dermatología.";
+                        break;
+                    case 2:
+                        Especialidad = "Ginecología.";
+                        break;
+                    case 3:
+                        Especialidad = "Obstetricia.";
+                        break;
+                    case 4:
+                        Especialidad = "Tocología.";
+                        break;
+                    case 5:
+                        Especialidad = "Oftalmología.";
+                        break;
+                    case 6:
+                        Especialidad = "Otorrinolaringología.";
+                        break;
+                    case 7:
+                        Especialidad = "Urología.";
+                        break;
+                    case 8:
+                        Especialidad = "Traumatología.";
+                        break;
                 }
-                if(Mdc.getListaSeguroMedico()[0]==1)
-                    ListaSeguroMedico=ListaSeguroMedico+"Seguro Mortorio";
-                if(Mdc.getListaSeguroMedico()[1]==1)
-                    ListaSeguroMedico=ListaSeguroMedico+"; Seguro por 1 o + Hijos";
-                if(Mdc.getListaSeguroMedico()[2]==1)
-                    ListaSeguroMedico=ListaSeguroMedico+"; Seguro de vida";
-                if(Mdc.getListaSeguroMedico()[3]==1)
-                    ListaSeguroMedico=ListaSeguroMedico+"; Seguro por discapasidad";
-                if(Mdc.getListaSeguroMedico()[4]==1)
-                    ListaSeguroMedico=ListaSeguroMedico+"; Seguro Medico Familiar";
-                    
-                if (Mdc.getPrestadordelIESS().equals("NO"))
-                    PrestadoralIESS="NO";
-                else
-                    PrestadoralIESS="SI";
-                Object[] fila={Mdc.getCedula(),Mdc.getNombre(),Mdc.getApellido(),
+                if (Mdc.getListaSeguroMedico()[0] == 1) {
+                    ListaSeguroMedico = ListaSeguroMedico + "Seguro Mortorio";
+                }
+                if (Mdc.getListaSeguroMedico()[1] == 1) {
+                    ListaSeguroMedico = ListaSeguroMedico + "; Seguro por 1 o + Hijos";
+                }
+                if (Mdc.getListaSeguroMedico()[2] == 1) {
+                    ListaSeguroMedico = ListaSeguroMedico + "; Seguro de vida";
+                }
+                if (Mdc.getListaSeguroMedico()[3] == 1) {
+                    ListaSeguroMedico = ListaSeguroMedico + "; Seguro por discapasidad";
+                }
+                if (Mdc.getListaSeguroMedico()[4] == 1) {
+                    ListaSeguroMedico = ListaSeguroMedico + "; Seguro Medico Familiar";
+                }
+
+                if (Mdc.getPrestadordelIESS().equals("NO")) {
+                    PrestadoralIESS = "NO";
+                } else {
+                    PrestadoralIESS = "SI";
+                }
+                Object[] fila = {Mdc.getCedula(), Mdc.getNombre(), Mdc.getApellido(),
                     Especialidad,
                     PrestadoralIESS,
                     Mdc.getCodigoRegistroDeColegioDeMedicos(),
@@ -175,11 +164,11 @@ public class MostrarDatosMedicos extends javax.swing.JFrame {
                     ListaSeguroMedico,
                     Mdc.getSueldo()};
                 modelo.addRow(fila);
-                
+
             }
         }
-        
-}
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable Tabla;

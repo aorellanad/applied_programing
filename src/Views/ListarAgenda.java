@@ -6,8 +6,9 @@
 package Views;
 
 import javax.swing.table.DefaultTableModel;
-import main.Agenda;
-import main.ListaAgenda;
+import models.Agenda;
+import models.ListaAgenda;
+
 /**
  *
  * @author Steven Pérez
@@ -94,78 +95,60 @@ public class ListarAgenda extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+    public void cargardatos(ListaAgenda listado) {
+        DefaultTableModel modelo = (DefaultTableModel) tbdatos.getModel();
+
+        for (Agenda p : listado.getLista()) {
+            String tac = "";
+            String dia_actividad = "";
+            String actividad = "";
+            switch (p.getT_ac()) {
+                case 0:
+                    tac = "Academica";
                     break;
-                }
+                case 1:
+                    tac = "Deportiva";
+                    break;
+                case 2:
+                    tac = "Artistica";
+                    break;
+                case 3:
+                    tac = "Recreativa";
+                    break; //Academica-Deportiva-Artistica-Recreativa
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ListarAgenda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ListarAgenda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ListarAgenda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ListarAgenda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ListarAgenda().setVisible(true);
+            if (p.getDia_actividad()[0] == 1) {
+                dia_actividad = "Lunes";
             }
-        });
-    }
-         public void cargardatos(ListaAgenda listado){
-        DefaultTableModel modelo=(DefaultTableModel) tbdatos.getModel();
-        
-        for(Agenda p:listado.getLista()){
-            String tac="";
-            String dia_actividad="";
-            String actividad="";
-            switch(p.getT_ac()){
-                case 0:tac="Academica";break;
-                case 1:tac="Deportiva";break;
-                case 2:tac="Artistica";break;
-                case 3:tac="Recreativa";break; //Academica-Deportiva-Artistica-Recreativa
+            if (p.getDia_actividad()[1] == 1) {
+                dia_actividad = dia_actividad + "; Martes";
             }
-            if(p.getDia_actividad()[0]==1)
-                dia_actividad="Lunes";
-            if(p.getDia_actividad()[1]==1)
-                dia_actividad=dia_actividad+"; Martes";
-            if(p.getDia_actividad()[2]==1)
-                dia_actividad=dia_actividad+"; Miercoles";
-            if(p.getDia_actividad()[3]==1)
-                dia_actividad=dia_actividad+"; Jueves";
-            if(p.getDia_actividad()[4]==1)
-                dia_actividad=dia_actividad+"; Viernes";
-            if(p.getDia_actividad()[5]==1)
-                dia_actividad=dia_actividad+"; Sabado";
-            if(p.getDia_actividad()[6]==1)
-                dia_actividad=dia_actividad+"; Domingo";
-            if(p.getActividad().equals("Realizada"))
-                actividad="Realizada";
-            else
-                actividad="No Realizada";
-            Object[] fila={p.getNombre(),tac,p.getH_inicio(),p.getH_final(),actividad,dia_actividad};
+            if (p.getDia_actividad()[2] == 1) {
+                dia_actividad = dia_actividad + "; Miercoles";
+            }
+            if (p.getDia_actividad()[3] == 1) {
+                dia_actividad = dia_actividad + "; Jueves";
+            }
+            if (p.getDia_actividad()[4] == 1) {
+                dia_actividad = dia_actividad + "; Viernes";
+            }
+            if (p.getDia_actividad()[5] == 1) {
+                dia_actividad = dia_actividad + "; Sabado";
+            }
+            if (p.getDia_actividad()[6] == 1) {
+                dia_actividad = dia_actividad + "; Domingo";
+            }
+            if (p.getActividad().equals("Realizada")) {
+                actividad = "Realizada";
+            } else {
+                actividad = "No Realizada";
+            }
+            Object[] fila = {p.getNombre(), tac, p.getH_inicio(), p.getH_final(), actividad, dia_actividad};
             modelo.addRow(fila);
-                
-            }
+
+        }
 
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;

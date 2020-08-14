@@ -1,5 +1,4 @@
-package main;
-import main.Medico;
+package models;
 import java.util.ArrayList;
 public class ListaMedicos {
     protected ArrayList<Medico> lista=new ArrayList<Medico>();
