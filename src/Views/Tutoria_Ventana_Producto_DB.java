@@ -5,6 +5,7 @@
  */
 package Views;
 
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import main.CrudProducto;
 import main.producto1;
@@ -43,10 +44,13 @@ public class Tutoria_Ventana_Producto_DB extends javax.swing.JFrame {
         txt_precio = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         txt_Stock = new javax.swing.JTextField();
+        btnModificar = new javax.swing.JButton();
+        btnAgregar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         btnEliminar.setText("ELIMINAR");
+        btnEliminar.setEnabled(false);
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarActionPerformed(evt);
@@ -54,6 +58,7 @@ public class Tutoria_Ventana_Producto_DB extends javax.swing.JFrame {
         });
 
         btnBuscar.setText("BUSCAR");
+        btnBuscar.setEnabled(false);
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarActionPerformed(evt);
@@ -61,6 +66,7 @@ public class Tutoria_Ventana_Producto_DB extends javax.swing.JFrame {
         });
 
         btnListar.setText("LISTAR PRODUCTO");
+        btnListar.setEnabled(false);
         btnListar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnListarActionPerformed(evt);
@@ -114,45 +120,58 @@ public class Tutoria_Ventana_Producto_DB extends javax.swing.JFrame {
             }
         });
 
+        btnModificar.setText("MODIFICAR");
+        btnModificar.setEnabled(false);
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
+
+        btnAgregar.setText("AGREGAR");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(btnAgregar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(190, 190, 190)
+                        .addGap(12, 12, 12)
+                        .addComponent(btnModificar)
+                        .addGap(18, 18, 18)
                         .addComponent(btnEliminar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(btnBuscar)
                         .addGap(18, 18, 18)
                         .addComponent(btnListar))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel3)
-                                        .addComponent(jLabel2)
-                                        .addComponent(jLabel5))
-                                    .addGap(18, 18, 18)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(txt_IDproducto, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txt_Stock, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txt_descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel4)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(txt_precio, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(168, 168, 168))))))
-                .addContainerGap(59, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel4))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel1)
+                            .addComponent(txt_IDproducto, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
+                            .addComponent(txt_descripcion)
+                            .addComponent(txt_Stock)
+                            .addComponent(txt_precio))))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(25, Short.MAX_VALUE)
+                .addContainerGap(24, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -174,7 +193,9 @@ public class Tutoria_Ventana_Producto_DB extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEliminar)
                     .addComponent(btnBuscar)
-                    .addComponent(btnListar))
+                    .addComponent(btnListar)
+                    .addComponent(btnModificar)
+                    .addComponent(btnAgregar))
                 .addGap(35, 35, 35))
         );
 
@@ -191,7 +212,7 @@ public class Tutoria_Ventana_Producto_DB extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        int IDproducto = Integer.parseInt(JOptionPane.showInputDialog("ingrese el codigo"));
+        int IDproducto = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el codigo:"));
 
         try {
             limpiar();
@@ -205,12 +226,13 @@ public class Tutoria_Ventana_Producto_DB extends javax.swing.JFrame {
             txt_Stock.setText(String.valueOf(prod.getStock()));
             txt_precio.setText(String.valueOf(prod.getPrecio()));
             txt_IDproducto.setText(String.valueOf(prod.getIDproducto()));
+            btnModificar.setEnabled(true);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Registro no encontrado...");
             limpiar();
-
+            
         }
-        btnBuscar.setEnabled(false);
+        
     }//GEN-LAST:event_btnBuscarActionPerformed
     private void limpiar() {
         txt_IDproducto.setText("");
@@ -231,7 +253,12 @@ public class Tutoria_Ventana_Producto_DB extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_IDproductoKeyReleased
 
     private void txt_IDproductoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_IDproductoKeyTyped
-
+        char validar = evt.getKeyChar();
+        if (Character.isLetter(validar)) {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(rootPane, "Ingrese solo numeros");
+        }
     }//GEN-LAST:event_txt_IDproductoKeyTyped
 
     private void txt_descripcionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_descripcionKeyReleased
@@ -239,7 +266,15 @@ public class Tutoria_Ventana_Producto_DB extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_descripcionKeyReleased
 
     private void txt_descripcionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_descripcionKeyTyped
-
+         char validar = evt.getKeyChar();
+        int c = evt.getKeyChar();
+        if (Character.isDigit(validar) && (!((c > 65 && c <= 98) || (c >= 97 && c <= 22)))) {
+            getToolkit().beep();
+            evt.consume();
+            Toolkit.getDefaultToolkit().beep();
+            JOptionPane.showMessageDialog(rootPane, "Ingrese solo letras");
+        }
+        System.out.println(c);
     }//GEN-LAST:event_txt_descripcionKeyTyped
 
     private void txt_precioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_precioKeyReleased
@@ -247,7 +282,12 @@ public class Tutoria_Ventana_Producto_DB extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_precioKeyReleased
 
     private void txt_precioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_precioKeyTyped
-
+        char validar = evt.getKeyChar();
+        if (Character.isLetter(validar)) {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(rootPane, "Ingrese solo numeros");
+        }
     }//GEN-LAST:event_txt_precioKeyTyped
 
     private void txt_StockKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_StockKeyReleased
@@ -255,9 +295,59 @@ public class Tutoria_Ventana_Producto_DB extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_StockKeyReleased
 
     private void txt_StockKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_StockKeyTyped
- 
+        char validar = evt.getKeyChar();
+        if (Character.isLetter(validar)) {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(rootPane, "Ingrese solo numeros");
+        }
     }//GEN-LAST:event_txt_StockKeyTyped
 
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+    if (!validaVacios()) {
+            int IDproducto = Integer.parseInt(txt_IDproducto.getText());
+            String Descripcion = txt_descripcion.getText();
+            int Stock = Integer.parseInt(txt_Stock.getText());
+            Double precio = Double.parseDouble(txt_precio.getText());
+
+            producto1 producto = new producto1(IDproducto, Descripcion, Stock, precio);
+            CrudProducto crudPro = new CrudProducto();
+            String mensaje = crudPro.guardarNuevo(producto);
+            JOptionPane.showMessageDialog(this, mensaje);
+            limpiar();
+            btnEliminar.setEnabled(true);
+            btnBuscar.setEnabled(true);
+            btnListar.setEnabled(true);
+        }else{
+            JOptionPane.showMessageDialog(null, "Datos Incompletos");
+        }
+    }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        int IDproducto=Integer.parseInt(txt_IDproducto.getText());
+        String Descripcion=txt_descripcion.getText();
+        int Stock = Integer.parseInt(txt_Stock.getText());
+        Double precio = Double.parseDouble(txt_precio.getText());
+        
+        producto1 dtoProducto=new producto1(IDproducto, Descripcion, Stock, precio);
+        CrudProducto p=new CrudProducto();
+        String mensaje =p.Actualizar(dtoProducto);
+        JOptionPane.showMessageDialog(this, mensaje);
+    }//GEN-LAST:event_btnModificarActionPerformed
+    
+    private boolean validaVacios(){
+         boolean vacio=false;
+         if(txt_IDproducto.getText().equals("")){
+             vacio=true;
+         }else if (txt_descripcion.getText().equals("")){
+             vacio=true;
+         }else if (txt_Stock.getText().equals("")){
+             vacio=true;
+         }else if (txt_precio.getText().equals("")){
+             vacio=true;
+         }
+        return vacio;
+    }
     /**
      * @param args the command line arguments
      */
@@ -297,9 +387,11 @@ public class Tutoria_Ventana_Producto_DB extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnListar;
+    private javax.swing.JButton btnModificar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

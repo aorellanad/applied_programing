@@ -1,16 +1,15 @@
 package main;
 
 //import coneccion.Conexion;
+import main.Conexion;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
 public class CrudProducto {
-
-    private ArrayList<producto1> lista = new ArrayList();
+    
     private producto1 dtoProducto;
-    String mensaje = "";
 
     public producto1 getDtoProducto() {
         return dtoProducto;
@@ -21,22 +20,21 @@ public class CrudProducto {
     }
 
     public String guardarNuevo(producto1 dtoProducto) {
-        this.dtoProducto = dtoProducto;
+        this.setDtoProducto(dtoProducto);
+        String mensaje= "";
         //String mensaje = "";
         try {
             Conexion cn = new Conexion();
-            Statement st = cn.Conectar();
-            String sentencia = "Insert into producto (IDproducto,Descripcion,Stock,precio) values(?,?,?,?) ";
-            //st.getConnection().prepareStatement(sentencia);
             cn.Conectar();
+            String sentencia = "Insert into producto (Idproducto,Descripcion,Stock,precio) values(?,?,?,?) ";
+            //st.getConnection().prepareStatement(sentencia);
             PreparedStatement pst = cn.getCon().prepareStatement(sentencia); //preparedtatement(sentencia);
             pst.setInt(1, this.dtoProducto.getIDproducto());
             pst.setString(2, this.dtoProducto.getDescripcion());
             pst.setInt(3, this.dtoProducto.getStock());
             pst.setDouble(4, this.dtoProducto.getPrecio());
             pst.execute();
-            mensaje = "registro guardado...";
-
+            mensaje = "Registro guardado...";
         } catch (Exception ex) {
             mensaje = "Error" + ex.getMessage();
         }
@@ -52,7 +50,7 @@ public class CrudProducto {
             PreparedStatement pst = cn.getCon().prepareStatement(sentencia);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
-                producto1 dto = new producto1(rs.getInt("IDproducto"), rs.getString("Descripcion"), rs.getInt("Stock"), rs.getInt("Precio"));
+                producto1 dto = new producto1(rs.getInt("IDproducto"), rs.getString("Descripcion"), rs.getInt("Stock"), rs.getInt("precio"));
                 listado.add(dto);
             }
             cn.Desconectar();
@@ -75,7 +73,7 @@ public class CrudProducto {
                 prod.setIDproducto(rs.getInt("IDproducto"));
                 prod.setDescripcion(rs.getString("Descripcion"));
                 prod.setStock(rs.getInt("Stock"));
-                prod.setPrecio(rs.getDouble("Precio"));
+                prod.setPrecio(rs.getDouble("precio"));
             }
             cn.Desconectar();
         } catch (Exception ex) {
@@ -89,7 +87,7 @@ public class CrudProducto {
         String mensaje = "";
         try {
             Conexion cn = new Conexion();
-            String sentencia = "Update producto set Descripcion=?,Stock=?,Precio=? where IDproducto=?";
+            String sentencia = "Update producto set Descripcion=?,Stock=?,precio=? where IDproducto=?";
             cn.Conectar();
             PreparedStatement pst = cn.getCon().prepareStatement(sentencia);
             pst.setString(1, this.dtoProducto.getDescripcion());
