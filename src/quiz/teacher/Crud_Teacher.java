@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author bpuni
+ * @author Byron Keyko Gabriel
  */
 public class Crud_Teacher {
 
@@ -118,5 +118,22 @@ public class Crud_Teacher {
             mensaje="Error "+ex.getMessage();
         }
        return mensaje;
+    }
+   
+   public String Eliminarxcodigo(int codigo){
+        String mensaje;
+        try {
+            Conexion cn = new Conexion();
+            String sentencia= "Delete from datos where id=?";
+            cn.Conectar();
+            PreparedStatement pst = cn.getCon().prepareStatement(sentencia);
+            pst.setInt(1, codigo);
+            pst.execute();
+            cn.Desconectar();
+            mensaje="Registro eliminado";
+        } catch (Exception e) {
+            mensaje="no se pudo eliminar...";
+        }
+        return mensaje;
     }
 }

@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author bpuni
+ * @author Byron Keyko Gabriel
  */
 public class Conexion {
 
@@ -22,7 +22,7 @@ public class Conexion {
     private String database = "ejemplo";
     private String url = "jdbc:mysql://localhost:3306/" + database;
     private String username = "root";
-    private String password = "123";
+    private String password = "";//la contraseña depende de la base de cada persona
     private Connection con = null;
     private Statement stm = null;
 

@@ -2,7 +2,7 @@ package quiz.teacher;
 
 /**
  *
- * @author bpuni
+ * @author Byron Keyko Gabriel
  */
 public class Datos {
 
