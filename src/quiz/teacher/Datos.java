@@ -68,6 +68,7 @@ public class Datos {
         this.registro = registro;
     }
 
+
     public String getGenero() {
         return genero;
     }
