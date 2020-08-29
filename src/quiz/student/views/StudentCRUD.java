@@ -35,7 +35,7 @@ public class StudentCRUD extends javax.swing.JFrame {
         btngenero = new javax.swing.ButtonGroup();
         btnAgregar = new javax.swing.JButton();
         btnListar = new javax.swing.JButton();
-        codigo = new javax.swing.JTextField();
+        txtcodigo = new javax.swing.JTextField();
         txtnombre = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -58,6 +58,8 @@ public class StudentCRUD extends javax.swing.JFrame {
         checprogramacion = new javax.swing.JCheckBox();
         jLabel8 = new javax.swing.JLabel();
         txtcedula = new javax.swing.JTextField();
+        btnActualizar = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -146,63 +148,82 @@ public class StudentCRUD extends javax.swing.JFrame {
 
         jLabel8.setText("Cedula");
 
+        btnActualizar.setText("ACTUALIZAR");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
+
+        btnBuscar.setText("BUSCAR");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(btnAgregar)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(btnListar)
-                            .addGap(288, 288, 288))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addComponent(jLabel5)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(rbfemenino)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(rbmasculino))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGap(11, 11, 11)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel2)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(txtnombre))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel1)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel3)
-                                        .addComponent(jLabel4)
-                                        .addComponent(jLabel8))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(txtapellido)
-                                        .addComponent(txtedad)
-                                        .addComponent(txtcedula)))))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel6)
-                                .addComponent(jLabel7))
-                            .addGap(18, 18, 18)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(cmbQuintil, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(jp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(rbfemenino)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(rbmasculino))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(11, 11, 11)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtnombre))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel1)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel3)
+                                            .addComponent(jLabel4)
+                                            .addComponent(jLabel8))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtapellido)
+                                            .addComponent(txtedad)
+                                            .addComponent(txtcedula)))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel7))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cmbQuintil, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnAgregar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnActualizar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnBuscar)
+                        .addGap(139, 139, 139)
+                        .addComponent(btnListar)
+                        .addGap(15, 15, 15))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(codigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addGap(4, 4, 4)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -238,7 +259,9 @@ public class StudentCRUD extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgregar)
-                    .addComponent(btnListar))
+                    .addComponent(btnListar)
+                    .addComponent(btnActualizar)
+                    .addComponent(btnBuscar))
                 .addGap(19, 19, 19))
         );
 
@@ -247,7 +270,7 @@ public class StudentCRUD extends javax.swing.JFrame {
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         if (!validaVacios()) {
-            int Codigo = Integer.parseInt(codigo.getText());
+            int Codigo = Integer.parseInt(txtcodigo.getText());
             String nombre = txtnombre.getText();
             String apellido = txtapellido.getText();
             int edad = Integer.parseInt(txtedad.getText());
@@ -295,6 +318,98 @@ public class StudentCRUD extends javax.swing.JFrame {
         listar.setVisible(true);
     }//GEN-LAST:event_btnListarActionPerformed
 
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        if (!validaVacios()) {
+            int Codigo = Integer.parseInt(txtcodigo.getText());
+            String nombre = txtnombre.getText();
+            String apellido = txtapellido.getText();
+            int edad = Integer.parseInt(txtedad.getText());
+            String cedula = txtcedula.getText();
+            String genero = "";
+            if (rbmasculino.isSelected()) {
+                genero = "Masculino";
+            } else {
+                genero = "Femenino";
+            }
+
+            String direccion = txtdireccion.getText();
+            int Quintil = cmbQuintil.getSelectedIndex();
+            String asignatura = "";
+
+            if (cheingles.isSelected()) {
+                asignatura += cheingles.getText() + ",";
+            }
+            if (checelectronica.isSelected()) {
+                asignatura += checelectronica.getText() + ",";
+            }
+            if (checestructuradd.isSelected()) {
+                asignatura += checestructuradd.getText() + ",";
+            }
+            if (checprogramacion.isSelected()) {
+                asignatura += checprogramacion.getText() + ",";
+            }
+            datosEstudiantes est = new datosEstudiantes(Codigo, nombre, apellido, edad, cedula, genero, direccion, Quintil, asignatura);
+
+            CRUD_estudiante crudEst = new CRUD_estudiante();
+            String mensaje = crudEst.Actualizar(est);
+            JOptionPane.showMessageDialog(this, "Dato Actualizado");
+            limpiar();
+        } else {
+            JOptionPane.showMessageDialog(null, "Datos incompletos");
+
+        }
+
+    }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        int codigo = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el codigo:"));
+
+        try {
+            limpiar();
+            CRUD_estudiante CrudEst = new CRUD_estudiante();
+            datosEstudiantes est = CrudEst.BuscarxCodigo(codigo);
+            if (est.getNombre() == null) {
+                JOptionPane.showMessageDialog(this, "Registro no encontrado....");
+                return;
+            }
+            txtcodigo.setText(String.valueOf(est.getCodigo()));
+            txtnombre.setText(est.getNombre());
+            txtapellido.setText(est.getApellido());
+            txtedad.setText(String.valueOf(est.getEdad()));
+            txtcedula.setText(est.getCedula());
+            if (est.getGenero().equals("Masculino")) {
+                rbmasculino.setSelected(true);
+            } else {
+                rbfemenino.setSelected(true);
+            }
+            txtdireccion.setText(est.getDireccion());
+            cmbQuintil.setSelectedIndex(est.getQuintil());
+            String Asig[] = est.getAsignatura().split(",");
+            for (int i = 0; i < Asig.length; i++) {
+                System.out.println(Asig[i]);
+                if (Asig[i].equals("Ingles")) {
+                    cheingles.setSelected(true);
+                }
+                if (Asig[i].equals("Estructura DD")) {
+                    checestructuradd.setSelected(true);
+                }
+                if (Asig[i].equals("Electrónica")) {
+                    checelectronica.setSelected(true);
+                }
+                if (Asig[i].equals("Programacion")) {
+                    checprogramacion.setSelected(true);
+                }
+            }
+            btnActualizar.setEnabled(true);
+            JOptionPane.showMessageDialog(this, "Modifique el Dato");
+            txtcodigo.setEnabled(false);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Registro no encontrado....");
+            limpiar();
+        }
+
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -331,7 +446,9 @@ public class StudentCRUD extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnListar;
     private javax.swing.ButtonGroup btngenero;
     private javax.swing.JCheckBox checelectronica;
@@ -339,7 +456,6 @@ public class StudentCRUD extends javax.swing.JFrame {
     private javax.swing.JCheckBox checprogramacion;
     private javax.swing.JCheckBox cheingles;
     private javax.swing.JComboBox<String> cmbQuintil;
-    private javax.swing.JTextField codigo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -354,6 +470,7 @@ public class StudentCRUD extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbmasculino;
     private javax.swing.JTextField txtapellido;
     private javax.swing.JTextField txtcedula;
+    private javax.swing.JTextField txtcodigo;
     private javax.swing.JTextArea txtdireccion;
     private javax.swing.JTextField txtedad;
     private javax.swing.JTextField txtnombre;
@@ -361,7 +478,7 @@ public class StudentCRUD extends javax.swing.JFrame {
 
     private boolean validaVacios() {
         boolean vacios = false;
-        if (codigo.getText().isEmpty()) {
+        if (txtcodigo.getText().isEmpty()) {
             vacios = true;
         } else if (txtnombre.getText().isEmpty()) {
             vacios = true;
@@ -369,22 +486,22 @@ public class StudentCRUD extends javax.swing.JFrame {
             vacios = true;
         } else if (txtedad.getText().isEmpty()) {
             vacios = true;
-        }else if (txtcedula.getText().isEmpty()) {
+        } else if (txtcedula.getText().isEmpty()) {
             vacios = true;
-        }else if (btngenero.equals(0)) {
-            vacios =true;
-        }else if (txtdireccion.getText().isEmpty()) {
+        } else if (btngenero.equals(0)) {
             vacios = true;
-        }else if (cmbQuintil.getSelectedIndex() == 0) {
+        } else if (txtdireccion.getText().isEmpty()) {
             vacios = true;
-        }else if (!cheingles.isSelected() && !checestructuradd.isSelected() && !checprogramacion.isSelected() && !checelectronica.isSelected()) {
+        } else if (cmbQuintil.getSelectedIndex() == 0) {
+            vacios = true;
+        } else if (!cheingles.isSelected() && !checestructuradd.isSelected() && !checprogramacion.isSelected() && !checelectronica.isSelected()) {
             vacios = true;
         }
         return vacios;
     }
 
     private void limpiar() {
-        codigo.setText("");
+        txtcodigo.setText("");
         txtnombre.setText("");
         txtapellido.setText("");
         txtedad.setText("");
@@ -398,5 +515,5 @@ public class StudentCRUD extends javax.swing.JFrame {
         checprogramacion.setSelected(false);
         cheingles.setSelected(false);
     }
-        
+
 }

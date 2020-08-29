@@ -5,7 +5,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-
 public class CRUD_estudiante {
 
     private datosEstudiantes estcrud;
@@ -102,4 +101,31 @@ public class CRUD_estudiante {
         }
         return dto;
     }
+
+    public String Actualizar(datosEstudiantes estcrud) {
+        this.setEstcrud(estcrud);
+        String mensaje = "";
+        try {
+            coneccion cn = new coneccion();
+            String sentencia = "Update estudiante set nombre=?,apellido=?,edad=?,cedula=?,genero?,direccion=?,quintil=?,asignatura=? where codigo=? ";
+            cn.Conectar();
+            PreparedStatement pst = cn.getCon().prepareStatement(sentencia);
+            pst.setInt(1, this.estcrud.getCodigo());
+            pst.setString(2, this.estcrud.getNombre());
+            pst.setString(3, this.estcrud.getApellido());
+            pst.setInt(4, this.estcrud.getEdad());
+            pst.setString(5, this.estcrud.getCedula());
+            pst.setString(6, this.estcrud.getGenero());
+            pst.setString(7, this.estcrud.getDireccion());
+            pst.setInt(8, this.estcrud.getQuintil());
+            pst.setString(9, this.estcrud.getAsignatura());
+            pst.execute();
+            mensaje = "Registro actualizado...";
+            cn.Desconectar();
+        } catch (Exception ex) {
+            mensaje = "Error " + ex.getMessage();
+        }
+        return mensaje;
+    }
+
 }
