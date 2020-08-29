@@ -107,18 +107,18 @@ public class CRUD_estudiante {
         String mensaje = "";
         try {
             coneccion cn = new coneccion();
-            String sentencia = "Update estudiante set nombre=?,apellido=?,edad=?,cedula=?,genero?,direccion=?,quintil=?,asignatura=? where codigo=? ";
+            String sentencia = "Update estudiante set nombre=?,apellido=?,edad=?,cedula=?,genero=?,direccion=?,quintil=?,asignatura=? where codigo=? ";
             cn.Conectar();
             PreparedStatement pst = cn.getCon().prepareStatement(sentencia);
-            pst.setInt(1, this.estcrud.getCodigo());
-            pst.setString(2, this.estcrud.getNombre());
-            pst.setString(3, this.estcrud.getApellido());
-            pst.setInt(4, this.estcrud.getEdad());
-            pst.setString(5, this.estcrud.getCedula());
-            pst.setString(6, this.estcrud.getGenero());
-            pst.setString(7, this.estcrud.getDireccion());
-            pst.setInt(8, this.estcrud.getQuintil());
-            pst.setString(9, this.estcrud.getAsignatura());
+            pst.setString(1, this.estcrud.getNombre());
+            pst.setString(2, this.estcrud.getApellido());
+            pst.setInt(3, this.estcrud.getEdad());
+            pst.setString(4, this.estcrud.getCedula());
+            pst.setString(5, this.estcrud.getGenero());
+            pst.setString(6, this.estcrud.getDireccion());
+            pst.setInt(7, this.estcrud.getQuintil());
+            pst.setString(8, this.estcrud.getAsignatura());
+            pst.setInt(9, this.estcrud.getCodigo());
             pst.execute();
             mensaje = "Registro actualizado...";
             cn.Desconectar();
