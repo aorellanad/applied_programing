@@ -5,10 +5,11 @@
  */
 package quiz.student.views;
 
+import java.awt.Toolkit;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import quiz.student.CRUD_estudiante;
 import quiz.student.datosEstudiantes;
-import quiz.student.views.ListadoEstudiante;
 
 /**
  *
@@ -16,11 +17,16 @@ import quiz.student.views.ListadoEstudiante;
  */
 public class StudentCRUD extends javax.swing.JFrame {
 
+    CRUD_estudiante crudEst = new CRUD_estudiante();
+
     /**
      * Creates new form StudentCRUD
      */
     public StudentCRUD() {
         initComponents();
+        this.setTitle("Registro Estudiante");
+        setIconImage(new ImageIcon(getClass().getResource("estudiante.png")).getImage());
+
     }
 
     /**
@@ -60,9 +66,14 @@ public class StudentCRUD extends javax.swing.JFrame {
         txtcedula = new javax.swing.JTextField();
         btnActualizar = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
+        btneliminar = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(204, 204, 204));
+        setResizable(false);
 
+        btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quiz/student/images/anadir.png"))); // NOI18N
         btnAgregar.setText("AGREGAR");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,6 +81,7 @@ public class StudentCRUD extends javax.swing.JFrame {
             }
         });
 
+        btnListar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quiz/student/images/listar.png"))); // NOI18N
         btnListar.setText("LISTAR PRODUCTO");
         btnListar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,19 +89,50 @@ public class StudentCRUD extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("codigo:");
+        txtcodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtcodigoKeyTyped(evt);
+            }
+        });
 
-        jLabel2.setText("nombre:");
+        txtnombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtnombreKeyTyped(evt);
+            }
+        });
 
-        jLabel3.setText("apellido:");
+        jLabel1.setFont(new java.awt.Font("Californian FB", 1, 14)); // NOI18N
+        jLabel1.setText("Codigo:");
 
-        jLabel4.setText("edad:");
+        jLabel2.setFont(new java.awt.Font("Californian FB", 1, 14)); // NOI18N
+        jLabel2.setText("Nombre:");
 
-        jLabel5.setText("genero:");
+        jLabel3.setFont(new java.awt.Font("Californian FB", 1, 14)); // NOI18N
+        jLabel3.setText("Apellido:");
 
-        jLabel6.setText("direccion:");
+        jLabel4.setFont(new java.awt.Font("Californian FB", 1, 14)); // NOI18N
+        jLabel4.setText("Edad:");
 
-        jLabel7.setText("quintil:");
+        jLabel5.setFont(new java.awt.Font("Californian FB", 1, 14)); // NOI18N
+        jLabel5.setText("Genero");
+
+        jLabel6.setFont(new java.awt.Font("Californian FB", 1, 14)); // NOI18N
+        jLabel6.setText("Direccion:");
+
+        jLabel7.setFont(new java.awt.Font("Californian FB", 1, 14)); // NOI18N
+        jLabel7.setText("Quintil");
+
+        txtapellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtapellidoKeyTyped(evt);
+            }
+        });
+
+        txtedad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtedadKeyTyped(evt);
+            }
+        });
 
         btngenero.add(rbfemenino);
         rbfemenino.setText("Femenino");
@@ -101,9 +144,9 @@ public class StudentCRUD extends javax.swing.JFrame {
         txtdireccion.setRows(5);
         jScrollPane1.setViewportView(txtdireccion);
 
-        cmbQuintil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "seleccion Quintil", "1", "2", "3", "4", "5", "6" }));
+        cmbQuintil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Seleccione un Quintil-", "1", "2", "3", "4", "5", "6" }));
 
-        jp.setBorder(javax.swing.BorderFactory.createTitledBorder("Asignaturas"));
+        jp.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Asignaturas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Californian FB", 1, 14))); // NOI18N
 
         cheingles.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         cheingles.setText("Ingles");
@@ -146,15 +189,25 @@ public class StudentCRUD extends javax.swing.JFrame {
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
+        jLabel8.setFont(new java.awt.Font("Californian FB", 1, 14)); // NOI18N
         jLabel8.setText("Cedula");
 
+        txtcedula.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtcedulaKeyTyped(evt);
+            }
+        });
+
+        btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quiz/student/images/actualizar.png"))); // NOI18N
         btnActualizar.setText("ACTUALIZAR");
+        btnActualizar.setEnabled(false);
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnActualizarActionPerformed(evt);
             }
         });
 
+        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quiz/student/images/buscar.png"))); // NOI18N
         btnBuscar.setText("BUSCAR");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -162,83 +215,100 @@ public class StudentCRUD extends javax.swing.JFrame {
             }
         });
 
+        btneliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quiz/student/images/eliminar.png"))); // NOI18N
+        btneliminar.setText("ELIMINAR");
+        btneliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btneliminarActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 51, 204));
+        jLabel9.setText("REGISTRO ESTUDIANTE");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(rbfemenino)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(rbmasculino))
+                            .addComponent(jp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(11, 11, 11)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtnombre))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel1)
+                                        .addComponent(jLabel5)
+                                        .addGap(37, 37, 37)
+                                        .addComponent(rbfemenino)
                                         .addGap(18, 18, 18)
-                                        .addComponent(txtcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(rbmasculino))
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel8)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel3)
-                                            .addComponent(jLabel4)
-                                            .addComponent(jLabel8))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(jLabel6)
+                                            .addComponent(jLabel7))
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtapellido)
-                                            .addComponent(txtedad)
-                                            .addComponent(txtcedula)))))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(25, 25, 25)
+                                                .addComponent(cmbQuintil, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel7))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cmbQuintil, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(btneliminar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnListar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnAgregar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnActualizar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnBuscar))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnAgregar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnActualizar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnBuscar)
-                        .addGap(139, 139, 139)
-                        .addComponent(btnListar)
-                        .addGap(15, 15, 15))))
+                        .addGap(112, 112, 112)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtapellido, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtedad, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtcedula, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addGap(5, 5, 5)
+                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(jLabel1)
+                    .addComponent(txtcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(4, 4, 4)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(txtapellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtapellido, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(txtedad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(4, 4, 4)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
                     .addComponent(txtcedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -250,18 +320,21 @@ public class StudentCRUD extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
                     .addComponent(cmbQuintil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgregar)
-                    .addComponent(btnListar)
                     .addComponent(btnActualizar)
                     .addComponent(btnBuscar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnListar)
+                    .addComponent(btneliminar))
                 .addGap(19, 19, 19))
         );
 
@@ -270,39 +343,8 @@ public class StudentCRUD extends javax.swing.JFrame {
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         if (!validaVacios()) {
-            int Codigo = Integer.parseInt(txtcodigo.getText());
-            String nombre = txtnombre.getText();
-            String apellido = txtapellido.getText();
-            int edad = Integer.parseInt(txtedad.getText());
-            String cedula = txtcedula.getText();
-            String genero = "";
-            if (rbmasculino.isSelected()) {
-                genero = "Masculino";
-            } else {
-                genero = "Femenino";
-            }
 
-            String direccion = txtdireccion.getText();
-            int Quintil = cmbQuintil.getSelectedIndex();
-            String asignatura = "";
-
-            if (cheingles.isSelected()) {
-                asignatura += cheingles.getText() + ",";
-            }
-            if (checelectronica.isSelected()) {
-                asignatura += checelectronica.getText() + ",";
-            }
-            if (checestructuradd.isSelected()) {
-                asignatura += checestructuradd.getText() + ",";
-            }
-            if (checprogramacion.isSelected()) {
-                asignatura += checprogramacion.getText() + ",";
-            }
-
-            datosEstudiantes est = new datosEstudiantes(Codigo, nombre, apellido, edad, cedula, genero, direccion, Quintil, asignatura);
-
-            CRUD_estudiante crudEst = new CRUD_estudiante();
-            String mensaje = crudEst.GuardarNuevo(est);
+            String mensaje = crudEst.GuardarNuevo(ingresardatos());
             JOptionPane.showMessageDialog(this, mensaje);
             limpiar();
         } else {
@@ -320,39 +362,9 @@ public class StudentCRUD extends javax.swing.JFrame {
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         if (!validaVacios()) {
-            int Codigo = Integer.parseInt(txtcodigo.getText());
-            String nombre = txtnombre.getText();
-            String apellido = txtapellido.getText();
-            int edad = Integer.parseInt(txtedad.getText());
-            String cedula = txtcedula.getText();
-            String genero = "";
-            if (rbmasculino.isSelected()) {
-                genero = "Masculino";
-            } else {
-                genero = "Femenino";
-            }
-
-            String direccion = txtdireccion.getText();
-            int Quintil = cmbQuintil.getSelectedIndex();
-            String asignatura = "";
-
-            if (cheingles.isSelected()) {
-                asignatura += cheingles.getText() + ",";
-            }
-            if (checelectronica.isSelected()) {
-                asignatura += checelectronica.getText() + ",";
-            }
-            if (checestructuradd.isSelected()) {
-                asignatura += checestructuradd.getText() + ",";
-            }
-            if (checprogramacion.isSelected()) {
-                asignatura += checprogramacion.getText() + ",";
-            }
-            datosEstudiantes est = new datosEstudiantes(Codigo, nombre, apellido, edad, cedula, genero, direccion, Quintil, asignatura);
-
-            CRUD_estudiante crudEst = new CRUD_estudiante();
-            String mensaje = crudEst.Actualizar(est);
+            String mensaje = crudEst.Actualizar(ingresardatos());
             JOptionPane.showMessageDialog(this, "Dato Actualizado");
+            txtcodigo.setEnabled(true);
             limpiar();
         } else {
             JOptionPane.showMessageDialog(null, "Datos incompletos");
@@ -368,11 +380,12 @@ public class StudentCRUD extends javax.swing.JFrame {
             limpiar();
             CRUD_estudiante CrudEst = new CRUD_estudiante();
             datosEstudiantes est = CrudEst.BuscarxCodigo(codigo);
-            if (est.getNombre() == null) {
+            if (est.getCodigo() == 0) {
                 JOptionPane.showMessageDialog(this, "Registro no encontrado....");
                 return;
             }
             txtcodigo.setText(String.valueOf(est.getCodigo()));
+            txtcodigo.setEnabled(false);
             txtnombre.setText(est.getNombre());
             txtapellido.setText(est.getApellido());
             txtedad.setText(String.valueOf(est.getEdad()));
@@ -401,80 +414,75 @@ public class StudentCRUD extends javax.swing.JFrame {
                 }
             }
             btnActualizar.setEnabled(true);
-            JOptionPane.showMessageDialog(this, "Modifique el Dato");
-            txtcodigo.setEnabled(false);
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Registro no encontrado....");
+            txtcodigo.setEnabled(true);
             limpiar();
         }
 
     }//GEN-LAST:event_btnBuscarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(StudentCRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(StudentCRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(StudentCRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(StudentCRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    private void btneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarActionPerformed
+        CRUD_estudiante crudEst = new CRUD_estudiante();
+        int codigo = Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese el Codigo del Estudiante."));
+        int confirm = JOptionPane.showConfirmDialog(this, "Seguro que desea eliminar este Estudiante?");
+        if (confirm == 0) {
+            JOptionPane.showMessageDialog(this, crudEst.Eliminarxcodigo(codigo));
         }
-        //</editor-fold>
+    }//GEN-LAST:event_btneliminarActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new StudentCRUD().setVisible(true);
-            }
-        });
-    }
+    private void txtedadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtedadKeyTyped
+        char validar = evt.getKeyChar();
+        if (Character.isLetter(validar)) {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(rootPane, "Ingrese solo numeros");
+        }
+    }//GEN-LAST:event_txtedadKeyTyped
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnActualizar;
-    private javax.swing.JButton btnAgregar;
-    private javax.swing.JButton btnBuscar;
-    private javax.swing.JButton btnListar;
-    private javax.swing.ButtonGroup btngenero;
-    private javax.swing.JCheckBox checelectronica;
-    private javax.swing.JCheckBox checestructuradd;
-    private javax.swing.JCheckBox checprogramacion;
-    private javax.swing.JCheckBox cheingles;
-    private javax.swing.JComboBox<String> cmbQuintil;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JPanel jp;
-    private javax.swing.JRadioButton rbfemenino;
-    private javax.swing.JRadioButton rbmasculino;
-    private javax.swing.JTextField txtapellido;
-    private javax.swing.JTextField txtcedula;
-    private javax.swing.JTextField txtcodigo;
-    private javax.swing.JTextArea txtdireccion;
-    private javax.swing.JTextField txtedad;
-    private javax.swing.JTextField txtnombre;
-    // End of variables declaration//GEN-END:variables
+    private void txtcedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcedulaKeyTyped
+        char validar = evt.getKeyChar();
+        if (Character.isLetter(validar)) {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(rootPane, "Ingrese solo numeros");
+        }
+    }//GEN-LAST:event_txtcedulaKeyTyped
+
+    private void txtnombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombreKeyTyped
+        char validar = evt.getKeyChar();
+        int c = evt.getKeyChar();
+        if (Character.isDigit(validar) && (!((c > 65 && c <= 98) || (c >= 97 && c <= 22)))) {
+            getToolkit().beep();
+            evt.consume();
+            Toolkit.getDefaultToolkit().beep();
+            JOptionPane.showMessageDialog(rootPane, "Ingrese solo Letras");
+        }
+        System.out.println(c);
+
+    }//GEN-LAST:event_txtnombreKeyTyped
+
+    private void txtapellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtapellidoKeyTyped
+        char validar = evt.getKeyChar();
+        int c = evt.getKeyChar();
+        if (Character.isDigit(validar) && (!((c > 65 && c <= 98) || (c >= 97 && c <= 22)))) {
+            getToolkit().beep();
+            evt.consume();
+            Toolkit.getDefaultToolkit().beep();
+            JOptionPane.showMessageDialog(rootPane, "Ingrese solo Letras");
+        }
+        System.out.println(c);
+    }//GEN-LAST:event_txtapellidoKeyTyped
+
+    private void txtcodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcodigoKeyTyped
+        char validar = evt.getKeyChar();
+        if (Character.isLetter(validar)) {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(rootPane, "Ingrese solo numeros");
+        }
+    }//GEN-LAST:event_txtcodigoKeyTyped
 
     private boolean validaVacios() {
         boolean vacios = false;
@@ -515,5 +523,103 @@ public class StudentCRUD extends javax.swing.JFrame {
         checprogramacion.setSelected(false);
         cheingles.setSelected(false);
     }
+
+    private datosEstudiantes ingresardatos() {
+        int Codigo = Integer.parseInt(txtcodigo.getText());
+        String nombre = txtnombre.getText();
+        String apellido = txtapellido.getText();
+        int edad = Integer.parseInt(txtedad.getText());
+        String cedula = txtcedula.getText();
+        String genero = "";
+        if (rbmasculino.isSelected()) {
+            genero = "Masculino";
+        } else {
+            genero = "Femenino";
+        }
+
+        String direccion = txtdireccion.getText();
+        int Quintil = cmbQuintil.getSelectedIndex();
+        String asignatura = "";
+
+        if (cheingles.isSelected()) {
+            asignatura += cheingles.getText() + ",";
+        }
+        if (checelectronica.isSelected()) {
+            asignatura += checelectronica.getText() + ",";
+        }
+        if (checestructuradd.isSelected()) {
+            asignatura += checestructuradd.getText() + ",";
+        }
+        if (checprogramacion.isSelected()) {
+            asignatura += checprogramacion.getText() + ",";
+        }
+        return new datosEstudiantes(Codigo, nombre, apellido, edad, cedula, genero, direccion, Quintil, asignatura);
+
+    }
+
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(StudentCRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(StudentCRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(StudentCRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(StudentCRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new StudentCRUD().setVisible(true);
+            }
+        });
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnActualizar;
+    private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnListar;
+    private javax.swing.JButton btneliminar;
+    private javax.swing.ButtonGroup btngenero;
+    private javax.swing.JCheckBox checelectronica;
+    private javax.swing.JCheckBox checestructuradd;
+    private javax.swing.JCheckBox checprogramacion;
+    private javax.swing.JCheckBox cheingles;
+    private javax.swing.JComboBox<String> cmbQuintil;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel jp;
+    private javax.swing.JRadioButton rbfemenino;
+    private javax.swing.JRadioButton rbmasculino;
+    private javax.swing.JTextField txtapellido;
+    private javax.swing.JTextField txtcedula;
+    private javax.swing.JTextField txtcodigo;
+    private javax.swing.JTextArea txtdireccion;
+    private javax.swing.JTextField txtedad;
+    private javax.swing.JTextField txtnombre;
+    // End of variables declaration//GEN-END:variables
 
 }

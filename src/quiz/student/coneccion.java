@@ -12,10 +12,10 @@ import quiz.teacher.Conexion;
 public class coneccion {
   
     private String servername = "localhost";
-    private String database = "tutoria";
+    private String database = "tutoria"; //nombre de la base de datos
     private String url = "jdbc:mysql://localhost:3306/" + database;
-    private String username = "root";
-    private String password = "root";
+    private String username = "root"; 
+    private String password = "";
     private Connection con = null;
     private Statement stm = null;
 

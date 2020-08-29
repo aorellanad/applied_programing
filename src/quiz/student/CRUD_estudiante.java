@@ -127,5 +127,21 @@ public class CRUD_estudiante {
         }
         return mensaje;
     }
-
+    
+    public String Eliminarxcodigo(int codigo){
+        String mensaje;
+        try {
+            coneccion cn = new coneccion();
+            String sentencia= "Delete from estudiante where codigo=?";
+            cn.Conectar();
+            PreparedStatement pst = cn.getCon().prepareStatement(sentencia);
+            pst.setInt(1, codigo);
+            pst.execute();
+            cn.Desconectar();
+            mensaje="Registro eliminado";
+        } catch (Exception e) {
+            mensaje="No se pudo Eliminar el Registro";
+        }
+        return mensaje;
+    }
 }

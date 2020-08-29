@@ -2,7 +2,7 @@
 -- Host:                         127.0.0.1
 -- Versión del servidor:         10.5.4-MariaDB - mariadb.org binary distribution
 -- SO del servidor:              Win64
--- HeidiSQL Versión:             11.0.0.5919
+-- HeidiSQL Versión:             11.0.0.6093
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -29,12 +29,12 @@ CREATE TABLE IF NOT EXISTS `estudiante` (
   `asignatura` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla tutoria.estudiante: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla tutoria.estudiante: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `estudiante` DISABLE KEYS */;
 INSERT INTO `estudiante` (`codigo`, `nombre`, `apellido`, `edad`, `cedula`, `genero`, `direccion`, `quintil`, `asignatura`) VALUES
-	(1, 'as', 'as', 2, '01', 'Masculino', 'asasd	', 3, 'Ingles,'),
 	(20, 'PELADO', 'CONEXION', 20, '02', 'Femenino', 'HAHAH', 1, 'Programacion,'),
-	(1, 'aa', 'aa', 10, '099', 'Masculino', 'aaa', 5, 'Ingles,');
+	(1, 'test', 'tes', 1, '1', 'Masculino', 'test', 5, 'Ingles,Electrónica,Estructura DD,Programacion,'),
+	(2, 'as', 'as', 20, '10', 'Masculino', 'asd', 2, 'Ingles,');
 /*!40000 ALTER TABLE `estudiante` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

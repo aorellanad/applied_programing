@@ -49,15 +49,15 @@
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="9" rowCount="0">
-                <Column editable="false" title="codigo" type="java.lang.Object"/>
-                <Column editable="false" title="nombre" type="java.lang.Object"/>
-                <Column editable="false" title="apellido" type="java.lang.Object"/>
-                <Column editable="false" title="edad" type="java.lang.Object"/>
-                <Column editable="false" title="cedula" type="java.lang.Object"/>
-                <Column editable="false" title="genero" type="java.lang.Object"/>
-                <Column editable="false" title="direccion" type="java.lang.Object"/>
-                <Column editable="false" title="quintil" type="java.lang.Object"/>
-                <Column editable="false" title="asignatura" type="java.lang.Object"/>
+                <Column editable="false" title="Codigo" type="java.lang.Object"/>
+                <Column editable="false" title="Nombre" type="java.lang.Object"/>
+                <Column editable="false" title="Apellido" type="java.lang.Object"/>
+                <Column editable="false" title="Edad" type="java.lang.Object"/>
+                <Column editable="false" title="Cedula" type="java.lang.Object"/>
+                <Column editable="false" title="Genero" type="java.lang.Object"/>
+                <Column editable="false" title="Direccion" type="java.lang.Object"/>
+                <Column editable="false" title="Quintil" type="java.lang.Object"/>
+                <Column editable="false" title="Asignatura" type="java.lang.Object"/>
               </Table>
             </Property>
           </Properties>
